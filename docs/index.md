@@ -115,7 +115,18 @@ TODO
 
 ---
 # 运维
-## Nginx、Haproxy、Keepalived实现原理
+## LVS、Nginx、Haproxy、Keepalived实现原理
+四层负载均衡、七层负载均衡
+
+## Linux启动流程
+
+## 数据库Innodb死锁如何定位
+```
+show engine innodb status
+```
+
+## mysql主从复制延时
+
 
 ---
 # MQ
