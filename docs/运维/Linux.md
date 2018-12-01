@@ -33,7 +33,7 @@
 show engine innodb status
 ```
 
-在5.5中，information_schema 库中增加了三个关于锁的表（MEMORY引擎）
+在5.5中，information_schema 库中增加了三个关于锁的表（MEMORY引擎）  
 - innodb_trx         ## 当前运行的所有事务
 - innodb_locks       ## 当前出现的锁
 - innodb_lock_waits  ## 锁等待的对应关系
