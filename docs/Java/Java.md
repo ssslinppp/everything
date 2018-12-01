@@ -1,6 +1,16 @@
 # Java
 
 ---
+
+## Spring AOP
+
+实现方式： 动态代理；   
+
+动态代理： 
+1. JavaProxy：基于接口实现
+2. CGlib：普通类就可以实现
+
+---
 # 并发编程
 ## HashMap与ConcurrentHashMap
 ## ThreadLocal
@@ -24,10 +34,3 @@
 # NIO
 
 ---
-
-# Spring
-## Spring
-[spring相关](./spring/spring.md)
-## SpringBoot
-
-## SpringCloud
