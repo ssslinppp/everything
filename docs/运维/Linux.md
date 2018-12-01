@@ -33,10 +33,10 @@
 show engine innodb status
 ```
 
-在5.5中，information_schema 库中增加了三个关于锁的表（MEMORY引擎）  
-- innodb_trx         ## 当前运行的所有事务
-- innodb_locks       ## 当前出现的锁
-- innodb_lock_waits  ## 锁等待的对应关系
+在5.5中，information_schema 库中增加了三个关于锁的表（MEMORY引擎）     
+- innodb_trx         ## 当前运行的所有事务     
+- innodb_locks       ## 当前出现的锁    
+- innodb_lock_waits  ## 锁等待的对应关系     
 
 ```
 MariaDB [(none)]> show databases like '%schema%';
@@ -67,12 +67,13 @@ MariaDB [information_schema]> show tables like '%INNODB_TR%';
 
 ### 减少主从延时复制
 TODO   
-- 从库硬件差
-- 网络延时
-- 复制为单线程，可考虑多线程
-- 慢查询多
-- 主库负载大：读写压力大，导致复制延时，考虑加缓存
-- 从库负载大：读压力大，可多台从库分担
+
+- 从库硬件差   
+- 网络延时  
+- 复制为单线程，可考虑多线程  
+- 慢查询多  
+- 主库负载大：读写压力大，导致复制延时，考虑加缓存    
+- 从库负载大：读压力大，可多台从库分担     
 
 
 ---
