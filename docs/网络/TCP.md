@@ -7,7 +7,7 @@
 
 ![tcp3次握手](https://static.oschina.net/uploads/space/2016/0926/165533_NFJu_737747.png)    
 
-> SYN=1 & 设置序列号初始值
+> SYN=1 & 设置序列号初始值   
 > ACK: 序列号+1
 
 第1次发送： client --> server （`client序列号初始值`）   
