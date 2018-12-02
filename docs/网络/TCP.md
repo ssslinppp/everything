@@ -3,10 +3,28 @@
 - HTTP请求全过程
 
 ## 三次握手与四次挥手
-tcp3次握手   
+### tcp3次握手   
+
 ![tcp3次握手](https://static.oschina.net/uploads/space/2016/0926/165533_NFJu_737747.png)    
 
-TCP的4次挥手
+> SYN=1 & 设置序列号初始值
+> ACK: 序列号+1
+
+第1次发送： client --> server （`client序列号初始值`）   
+- SYN=1: 表示进行连接
+- Seq：**客户端序列号的初始值**（该值是随机的，目的是防止恶意攻击）
+
+
+第2次发送： server  --> client （`ACK号` + `server序列号初始值`）   
+- SYN=1: 表示进行连接
+- ACK(应答) + **服务器序号初始值**（之所以分服务器和客户端初始值，因为是 **双工模式**）
+
+
+第3次发送： client --> server (`ACK号`)  
+- ACK （序列号+1）
+
+
+### TCP的4次挥手
 ![4次挥手](https://static.oschina.net/uploads/space/2016/0926/165553_emXw_737747.png)  
 
 [TCP的三次握手与四次挥手（详解+动图](https://blog.csdn.net/qzcsu/article/details/72861891)
