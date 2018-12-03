@@ -28,6 +28,8 @@ http和https的不同
 
 ## 性能优化
 
+---
+
 ## Http和Https的区别
 
 https://segmentfault.com/a/1190000011185129
@@ -64,7 +66,7 @@ HTTPS： `HTTP` + `SSL/TLS 协议` (HTTP over SSL)
 
 非对称加密： 加密和解码使用不同的密钥；
 
-## HTTP 和 TCP 之间的关系
+### HTTP 和 TCP 之间的关系
 
 > HTTP 协议需要依靠 TCP 协议来传输数据
 
