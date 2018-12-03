@@ -24,7 +24,94 @@ http和https的不同
 一个请求从发出到结束的全过程
 ```
 
-## 一段文本，怎么建立一套索引(反向索引)
+## 一段文本，怎么建立一套索引(倒排索引)
+
+https://blog.csdn.net/njpjsoftdev/article/details/54015485   
+
+https://segmentfault.com/a/1190000014480912   
+
+http://www.nosqlnotes.com/technotes/searchengine/lucene-invertedindex/
+
+![Lucene原理图](https://img-blog.csdn.net/20170103091620316?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcm9uYWxvZA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+
+### 倒排索引示例
+```
+文章1的内容为：Tom lives in Guangzhou,I live in Guangzhou too. 　　
+
+文章2的内容为：He once lived in Shanghai.
+```
+
+分词后
+
+```
+文章1的所有关键词为：[tom] [live] [guangzhou] [i] [live] [guangzhou] 　 　
+
+文章2的所有关键词为：[he] [live] [shanghai]
+```
+
+建立倒排索引
+```
+关键词          文章号 　　
+guangzhou        1 　　
+he               2 　　
+i                1 　　
+live             1,2 　　
+shanghai         2 　　
+tom              1 
+```
+
+加上“出现频率”和“出现位置”信息后，我们的索引结构变为：
+```
+词典文件（Term Dictionary）： 关键词
+频率文件(frequencies)： 文章号[出现频率]
+位置文件 (positions)：  出现位置
+
+关键词            文章号[出现频率]              出现位置 　　
+guangzhou           1[2]                      3，6 　　
+he                  2[1]                      1 　　
+i                   1[1]                      4 　　
+live                1[2]                      2，5, 
+                    2[1]                      2 　　
+shanghai            2[1]                      3 　　
+tom                 1[1]                      1 
+```
+
+![xxx](https://images0.cnblogs.com/blog/522490/201411/242157396061709.png)
+
+
+### FST ： 存储词典信息（即：关键字）
+词典文件： 使用 FST(Finite State Transducers: 有限状态机) :这是一个有向无环图  
+
+> 示例   
+
+插入“cat”     
+![插入“cat”](https://images0.cnblogs.com/blog/522490/201411/242224195125261.png)
+
+插入“deep”    
+![插入“deep”](https://images0.cnblogs.com/blog/522490/201411/242225053099870.png)
+
+插入“do”   
+![插入“do”](https://images0.cnblogs.com/blog/522490/201411/242225449029041.png)
+
+插入“dog”     
+![插入“dog”](https://images0.cnblogs.com/blog/522490/201411/242226206684914.png)
+
+插入“dogs”    
+![插入“dogs”](https://images0.cnblogs.com/blog/522490/201411/242226566064202.png)
+
+
+
+---
+
+
+DocID: SkipList（使用`跳表`而不是B+Tree）     
+![xx](https://segmentfault.com/img/bV8VfX?w=2064&h=492)    
+
+
+FST和SkipList       
+![xxx](https://segmentfault.com/img/bV8Vgi?w=1744&h=1116)   
+
+---
 
 ## 性能优化
 
