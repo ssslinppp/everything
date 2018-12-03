@@ -52,6 +52,8 @@ https://segmentfault.com/a/1190000011185129
 
 HTTPS： `HTTP` + `SSL/TLS 协议` (HTTP over SSL)   
 
+![xx](https://pic1.zhimg.com/80/v2-54ff04e1b0cc698f08f76d6356f59fac_hd.png)   
+
 - SSL协议（Secure Sockets Layer）：SSL运行在TCP/IP层之上、应用层之下
 - TLS（Transport Layer Security）：传输层安全协议
 
