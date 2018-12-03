@@ -49,6 +49,7 @@ https://segmentfault.com/a/1190000011185129
 > 服务器 <-->客户端： 使用约定的`对称加密-密钥`进行数据传输；
 > 
 
+![xx](https://pic1.zhimg.com/80/v2-5e2241fae8b593ff7f3b3a308ef81c10_hd.png)  
 
 HTTPS： `HTTP` + `SSL/TLS 协议` (HTTP over SSL)   
 
