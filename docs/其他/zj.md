@@ -102,13 +102,17 @@ tom                 1[1]                      1
 
 
 ---
+### 使用SkipList存储Docid
 
+DocID: SkipList（使用`跳表`而不是B+Tree： 因为BTree占用空间太高）     
 
-DocID: SkipList（使用`跳表`而不是B+Tree）     
 ![xx](https://segmentfault.com/img/bV8VfX?w=2064&h=492)    
 
+---
 
+### FST + SkipList 存储字典信息和DocId信息
 FST和SkipList       
+
 ![xxx](https://segmentfault.com/img/bV8Vgi?w=1744&h=1116)   
 
 ---
