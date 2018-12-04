@@ -32,6 +32,8 @@ https://segmentfault.com/a/1190000014480912
 
 http://www.nosqlnotes.com/technotes/searchengine/lucene-invertedindex/
 
+[elasticsearch 倒排索引原理](https://zhuanlan.zhihu.com/p/33671444)  
+
 ![Lucene原理图](https://img-blog.csdn.net/20170103091620316?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcm9uYWxvZA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 ### 倒排索引示例
@@ -99,12 +101,14 @@ tom                 1[1]                      1
 插入“dogs”    
 ![插入“dogs”](https://images0.cnblogs.com/blog/522490/201411/242226566064202.png)
 
-
-
 ---
-### 使用SkipList存储Docid
+
+### 使用SkipList存储Docid：`主要解决“与（合并）”的问题`  
 
 DocID: SkipList（使用`跳表`而不是B+Tree： 因为BTree占用空间太高）     
+
+使用SkipList存储DocId列表的原因: 很适合求`交集`   
+>  有序链表集合求交集，跳表是最常用的数据结构，它可以将有序集合求交集的复杂度由O(n)降至O(log(n))
 
 ![xx](https://segmentfault.com/img/bV8VfX?w=2064&h=492)    
 
@@ -204,6 +208,69 @@ HTTP对TCP的使用：
 ----
 
 ## web服务器的缓存机制（client和server）
+
+[偷天换日术-Web应用中的缓存技术漫谈](https://www.jianshu.com/p/254a2aa295e4)    
+
+![xxex](https://upload-images.jianshu.io/upload_images/7809593-d796990b950d1147.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/672/format/webp)    
+
+
+```
+                                   反向代理后后端
+请求：浏览器 -------> Nginx反向代理  ------------> web服务器 --------->DB
+
+返回：浏览器 <------- Nginx反向代理  <---------- web服务器 <--------- DB
+     
+缓存：客户端缓存                                 HTTP服务器缓存        数据库缓存
+    （浏览器缓存）                               应用缓存
+                                                应用页面缓存
+
+```
+
+
+服务端缓存     
+
+- 页面缓存   
+- 数据缓存： 内存缓存 + 文件缓存    
+- 数据库缓存： 数据库自己提供(TODO: 如何设置mysql读取缓存)      
+
+
+客户端缓存
+
+- 浏览器缓存     
+- 代理服务器缓存   
+- 网关缓存(`反向代理缓存`)    
+
+### 应用层数据缓存
+
+> 缓存数据库的查询结果    
+
+实际示例： 日志审计，查询时间范围长（需要跨多库跨多表，甚至跨节点）的日志个数，将查询结果保存在文件中，每次先读取文件内容，在考虑是否查数据库；
+
+> 预先加载数据：可以在系统启动时预加载
+
+比如： 获取部门、业务系统等维度的主机列表信息
+
+> 写入缓存： 对一直性要求不高的数据，可以先将数据写入到内存中，然后慢慢写回数据库
+
+比如：文章访问个数；   
+比如：操作日志，先写入redis，在写入数据库；   
+
+### HTML片段缓存
+
+### 浏览器缓存
+服务器通过设置响应的HTTP头，来通知浏览器按照服务器的要求进行响应的缓存。(重点：`服务端设置缓存参数，浏览器对缓存参数进行响应`)       
+常用参数：   
+- `Expires`： 过期缓存。这种缓存是最快的，因为没有任何HTTP请求的发生。当用户需要这个资源的时候，浏览器就直接从缓存（在硬盘中）读取，不再需要询问服务器端的意见。   
+- `Last-Modified`: 最后修改时间。通过这种缓存方式，无论资源是否发生了更新，仍然至少会发生一来一去HTTPS头的传输和接收，所以速度比不上Expires。   
+- `ETag`： 实体标签。和Last-Modified类似，也是WEB服务器和客户端用于确认缓存组件的有效性的一种机制。当资源被修改，其ETag也发生改变。ETag相对Last- Modified更精确，但在多服务器可能造成混乱。    
+- `Cache-Control`: 缓存控制。这个字段用于指定所有缓存机制在整个请求/响应链中必须服从的指令。这些指令指定用于阻止缓存对请求或响应造成不利干扰的行为。比如：Cache-Control: max-age=3600, public
+
+TODO:    
+> Spring MVC如何设置浏览器缓存参数？
+
+
+
+
 
 ## HTTP请求的全过程
 
